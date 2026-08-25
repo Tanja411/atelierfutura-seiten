@@ -1,0 +1,379 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dein Fundament liegt schon auf deiner Festplatte</title>
+<meta name="description" content="Masterclass · KI im Marketing 3.0 · 15.08.2026">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#1C1917">
+<style>
+  :root {
+      --grund: #F4EFE6;
+      --flaeche: #E7E0D2;
+      --text: #1C1917;
+      --text-leise: #6B6257;
+      --linie: #D8CFBE;
+      --marke: #1C1917;
+      --signal: #FF5242;
+      --tief: #1C1917;
+      --linie-leise: #8A8073;
+      --schrift-anzeige: Archivo, Montserrat, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      --schrift-text: Archivo, Montserrat, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      --r: 2px;
+      --a1: 8px; --a2: 16px; --a3: 24px; --a4: 40px; --a5: 64px; --a6: 96px;
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0; background: var(--grund); color: var(--text);
+    font: 400 17px/1.6 var(--schrift-text); -webkit-font-smoothing: antialiased;
+  }
+  img { max-width: 100%; height: auto; display: block; }
+  a { color: inherit; }
+  .bahn { width: min(920px, 100% - 2 * var(--a3)); margin-inline: auto; }
+  .fliess { max-width: 68ch; }
+  .fliess p { margin: 0 0 var(--a2); }
+  .fliess p:last-child { margin-bottom: 0; }
+  h1, h2, h3 { font-family: var(--schrift-anzeige); font-weight: 800; letter-spacing: -.025em; line-height: 1.1; margin: 0; }
+  h1 { font-size: clamp(2rem, 5.5vw, 3rem); }
+  h2 { font-size: 1.5rem; }
+  h3 { font-size: 1.32rem; letter-spacing: -.02em; }
+
+  /* Kopfleiste */
+  .kopf {
+    position: sticky; top: 0; z-index: 20; background: var(--tief); color: var(--grund);
+    border-bottom: 1px solid color-mix(in srgb, var(--grund) 14%, transparent);
+  }
+  .kopf__innen { display: flex; align-items: center; gap: var(--a2); padding: 12px 0; }
+  .kopf__marke { display: flex; align-items: center; gap: 10px; text-decoration: none; font-family: var(--schrift-anzeige); font-weight: 800; font-size: .96rem; }
+  .kopf__signet { width: 26px; height: 26px; background-image: url("bilder/signet-koralle.png"); background-size: contain; background-repeat: no-repeat; background-position: center; display: block; }
+  .kopf__zurueck { margin-left: auto; font-size: .84rem; text-decoration: none; color: color-mix(in srgb, var(--grund) 66%, transparent); }
+  .kopf__zurueck:hover { color: var(--signal); }
+
+  /* Auftakt */
+  .auftakt { background: var(--tief); color: var(--grund); padding: var(--a5) 0 var(--a6); position: relative; overflow: hidden; }
+  .auftakt h1 { color: var(--grund); margin-bottom: var(--a2); }
+  .auftakt__wasser { position: absolute; right: -8%; top: -30%; width: min(50vw, 460px); height: min(50vw, 460px); background-image: url("bilder/signet-koralle.png"); background-size: contain; background-repeat: no-repeat; opacity: .05; pointer-events: none; }
+  .auftakt .bahn { position: relative; z-index: 1; }
+  .auftakt__unter { margin: 0 0 var(--a3); font-size: .86rem; text-transform: uppercase; letter-spacing: .16em; color: var(--signal); font-weight: 500; }
+  .auftakt .fliess p { color: color-mix(in srgb, var(--grund) 84%, transparent); }
+
+  /* Dein Beitrag */
+  .beitrag { background: var(--flaeche); padding: var(--a4) 0; border-bottom: 1px solid var(--linie); }
+  .beitrag__label { margin: 0 0 var(--a1); font-size: .76rem; font-weight: 800; text-transform: uppercase; letter-spacing: .16em; color: var(--signal); }
+  .beitrag h2 { margin-bottom: var(--a2); }
+
+  /* Inhaltsverzeichnis */
+  .inhalt { padding: var(--a5) 0 var(--a4); }
+  .inhalt__kopf { display: flex; align-items: baseline; gap: 10px; margin-bottom: var(--a3); }
+  .inhalt__kopf h2 { font-size: 1.24rem; }
+  .inhalt__zahl { font-size: .84rem; color: var(--text-leise); }
+  .inhalt__gruppe { margin-bottom: var(--a3); }
+  .inhalt__titel { margin: 0 0 8px; font-size: .78rem; font-weight: 800; text-transform: uppercase; letter-spacing: .14em; color: var(--text-leise); }
+  .inhalt ul { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--linie); }
+  .inhalt li { border-bottom: 1px solid var(--linie); }
+  .inhalt li a { display: flex; gap: var(--a2); justify-content: space-between; align-items: baseline; padding: 10px 0; text-decoration: none; font-size: .98rem; }
+  .inhalt li a:hover { color: var(--signal); }
+  .inhalt__zeit { font-size: .8rem; color: var(--text-leise); white-space: nowrap; font-variant-numeric: tabular-nums; }
+
+  /* Abschnitte */
+  .abschnitt { padding: var(--a4) 0 var(--a5); border-top: 1px solid var(--linie); }
+  .marke-zeile { display: flex; align-items: center; gap: 12px; font-size: .8rem; font-weight: 500; text-transform: uppercase; letter-spacing: .16em; color: var(--text-leise); margin: 0 0 var(--a3); }
+  .stempel { width: 18px; height: 18px; flex: none; background-image: url("bilder/signet-koralle.png"); background-size: contain; background-repeat: no-repeat; background-position: center; display: block; }
+  .nr { font-variant-numeric: tabular-nums; }
+  .nr::after { content: ""; display: inline-block; width: 20px; height: 1px; background: currentColor; margin: 0 10px 4px; opacity: .45; }
+  .fliess--abschnitt { margin-bottom: var(--a3); color: var(--text-leise); }
+
+  /* Bereich */
+  .bereiche { display: grid; gap: var(--a3); }
+  .bereich { background: var(--flaeche); border-radius: var(--r); padding: var(--a4); scroll-margin-top: 74px; }
+  .bereich__zeit { margin: 0 0 var(--a1); font-size: .78rem; color: var(--text-leise); font-variant-numeric: tabular-nums; }
+  .bereich h3 { margin-bottom: var(--a2); }
+  .bereich .fliess p { font-size: 1rem; }
+  .nachoben { display: inline-block; margin-top: var(--a3); font-size: .8rem; color: var(--text-leise); text-decoration: none; }
+  .nachoben:hover { color: var(--signal); }
+
+  /* Anhänge */
+  .anhaenge { display: grid; gap: 10px; margin-top: var(--a3); }
+  .anhang { min-width: 0; }
+  .anhang__kopf { display: flex; align-items: center; gap: var(--a2); justify-content: space-between; margin-bottom: 6px; flex-wrap: wrap; }
+  .anhang__label { font-size: .78rem; font-weight: 800; text-transform: uppercase; letter-spacing: .12em; color: var(--signal); }
+
+  .prompt {
+    margin: 0; background: var(--tief); color: var(--grund); border-radius: var(--r);
+    padding: 16px 18px; font: 400 13.5px/1.65 var(--mono);
+    white-space: pre-wrap; word-break: break-word; max-height: 340px; overflow: auto;
+  }
+  .kopierknopf {
+    cursor: pointer; background: var(--signal); color: #fff; border: 0; border-radius: 999px;
+    font: 800 .78rem/1 var(--schrift-anzeige); padding: 7px 14px;
+  }
+  .kopierknopf:hover { filter: brightness(.93); }
+  .kopierknopf:focus-visible { outline: 3px solid var(--text); outline-offset: 2px; }
+
+  .datei, .verweis {
+    display: flex; align-items: center; gap: var(--a2); justify-content: space-between;
+    background: var(--grund); border: 1px solid var(--linie); border-radius: var(--r);
+    padding: 13px 16px; text-decoration: none; flex-wrap: wrap;
+  }
+  .datei:hover, .verweis:hover { border-color: var(--signal); }
+  .datei__name, .verweis__label { font-weight: 800; font-family: var(--schrift-anzeige); font-size: .96rem; word-break: break-word; }
+  .datei__art, .verweis__ziel { font-size: .78rem; color: var(--text-leise); white-space: nowrap; }
+  .datei__name::before { content: "↓ "; color: var(--signal); }
+  .verweis__label::before { content: "→ "; color: var(--signal); }
+
+  .reinschauen { margin-top: 6px; border: 1px solid var(--linie); border-radius: var(--r); background: var(--grund); }
+  .reinschauen summary { cursor: pointer; list-style: none; padding: 10px 16px; font-size: .84rem; font-weight: 800; }
+  .reinschauen summary::-webkit-details-marker { display: none; }
+  .reinschauen summary::before { content: "+ "; color: var(--signal); }
+  .reinschauen[open] summary::before { content: "\2013 "; }
+  .reinschauen pre { margin: 0; padding: 0 16px 14px; font: 400 12.5px/1.6 var(--mono); white-space: pre-wrap; word-break: break-word; max-height: 300px; overflow: auto; color: var(--text-leise); }
+
+  .video {
+    display: flex; align-items: center; gap: var(--a2); width: 100%; cursor: pointer;
+    background: var(--tief); color: var(--grund); border: 0; border-radius: var(--r);
+    padding: 16px 18px; text-align: left; font: inherit; flex-wrap: wrap;
+  }
+  .video:hover { filter: brightness(1.15); }
+  .video__zeichen { color: var(--signal); font-size: 1.1rem; }
+  .video__label { font-family: var(--schrift-anzeige); font-weight: 800; font-size: .98rem; }
+  .video__hinweis { margin-left: auto; font-size: .76rem; color: color-mix(in srgb, var(--grund) 58%, transparent); }
+  .video-rahmen { position: relative; aspect-ratio: 16/9; background: #000; border-radius: var(--r); overflow: hidden; }
+  .video-rahmen iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+
+  .knopf {
+    display: inline-block; background: var(--signal); color: #fff; text-decoration: none;
+    font-family: var(--schrift-anzeige); font-weight: 800; font-size: .96rem;
+    padding: 13px 26px; border-radius: var(--r); margin-top: var(--a2);
+  }
+  .knopf:hover { filter: brightness(.93); }
+
+  .fuss { background: var(--tief); color: color-mix(in srgb, var(--grund) 58%, transparent); padding: var(--a4) 0; font-size: .82rem; }
+  .fuss__innen { display: flex; flex-wrap: wrap; gap: var(--a2) var(--a4); justify-content: space-between; align-items: center; }
+  .fuss a { text-decoration: none; border-bottom: 1px solid color-mix(in srgb, var(--grund) 24%, transparent); }
+  .fuss a:hover { border-color: var(--signal); }
+  .leer { color: var(--text-leise); }
+
+  @media (max-width: 700px) {
+    .bereich { padding: var(--a3); }
+    .abschnitt { padding: var(--a3) 0 var(--a4); }
+  }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+</style>
+</head>
+<body id="top">
+
+<header class="kopf">
+  <div class="bahn kopf__innen">
+    <a class="kopf__marke" href="#top"><span class="kopf__signet"></span>Atelier Futura</a>
+    <a class="kopf__zurueck" href="../">zur Seite</a>
+  </div>
+</header>
+
+<section class="auftakt">
+  <span class="auftakt__wasser" aria-hidden="true"></span>
+  <div class="bahn">
+    <p class="auftakt__unter">Masterclass · KI im Marketing 3.0 · 15.08.2026</p>
+    <h1>Dein Fundament liegt schon auf deiner Festplatte</h1>
+    <div class="fliess"><p>Ich habe für meine zwei Landing Pages kein einziges Interview gebraucht. Kein Fragebogen, keine Positionierungsrunde, keine 45 Minuten Selbstbefragung.</p>
+<p>Stattdessen hat Claude Code meine Festplatte durchsucht. Und dort lagen: mein Brand OS im Google Drive, mein Kernstück-Dokument, meine Farben, meine Fotos und eine Reportage über mich, die zwei Tage alt war und die ich in dem Moment gar nicht auf dem Schirm hatte.</p>
+<p>Genau das kannst du morgen früh auch machen. Hier ist, was du dafür brauchst.</p></div>
+  </div>
+</section>
+
+
+    <aside class="beitrag">
+      <div class="bahn">
+        <p class="beitrag__label">Dein Beitrag</p>
+        <h2>Was hast du gefunden, das du vergessen hattest?</h2>
+        <div class="fliess"><p>Wenn du den Fundstück-Prompt laufen lässt, schreib mir, was dabei herauskam. Die besten Funde nehme ich hier auf.</p></div>
+        <a class="knopf" href="mailto:tanja@atelierfutura.de">Schreib mir</a>
+      </div>
+    </aside>
+
+<section class="inhalt">
+  <div class="bahn">
+    <div class="inhalt__kopf">
+      <h2>Inhalt</h2>
+      <span class="inhalt__zahl">5 Einträge</span>
+    </div>
+    
+    <div class="inhalt__gruppe">
+      <p class="inhalt__titel">Der Kern der Sache</p>
+      <ul>
+        
+          <li><a href="#a-die-idee-in-drei-saetzen-0-0">
+            <span>Die Idee in drei Sätzen</span>
+            <span class="inhalt__zeit">14.08. · 21:10 Uhr</span>
+          </a></li>
+          <li><a href="#a-was-bei-mir-dabei-herauskam-0-1">
+            <span>Was bei mir dabei herauskam</span>
+            <span class="inhalt__zeit">14.08. · 21:14 Uhr</span>
+          </a></li>
+      </ul>
+    </div>
+    <div class="inhalt__gruppe">
+      <p class="inhalt__titel">Zum Mitnehmen</p>
+      <ul>
+        
+          <li><a href="#a-der-fundstueck-prompt-1-0">
+            <span>Der Fundstück-Prompt</span>
+            <span class="inhalt__zeit">14.08. · 21:20 Uhr</span>
+          </a></li>
+          <li><a href="#a-die-regel-die-den-unterschied-macht-1-1">
+            <span>Die Regel, die den Unterschied macht</span>
+            <span class="inhalt__zeit">14.08. · 21:24 Uhr</span>
+          </a></li>
+      </ul>
+    </div>
+    <div class="inhalt__gruppe">
+      <p class="inhalt__titel">Diverses</p>
+      <ul>
+        
+          <li><a href="#a-die-bauplaene-aus-dem-workshop-2-0">
+            <span>Die Baupläne aus dem Workshop</span>
+            <span class="inhalt__zeit">14.08. · 21:30 Uhr</span>
+          </a></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+
+    <section class="abschnitt">
+      <div class="bahn">
+        <p class="marke-zeile"><span class="stempel" aria-hidden="true"></span><span class="nr">01</span>Der Kern der Sache</p>
+        <div class="fliess fliess--abschnitt"><p>Warum das Fundament nicht aus einem Interview kommt, sondern aus dem, was du längst hast.</p></div>
+        <div class="bereiche">
+      <article class="bereich" id="a-die-idee-in-drei-saetzen-0-0">
+        <p class="bereich__zeit">14.08. · 21:10 Uhr</p>
+        <h3>Die Idee in drei Sätzen</h3>
+        <div class="fliess"><p>Jeder von uns hat jahrelang Material produziert. Konzepte, Positionierungspapiere, Notizen, Präsentationen, alte Verkaufstexte, Fotos von Shootings, die nie jemand benutzt hat.</p>
+<p>Das Problem ist nicht, dass uns das Fundament fehlt. Das Problem ist, dass wir vergessen haben, wo es liegt.</p>
+<p>Eine KI mit Zugriff auf deinen Rechner findet in zehn Minuten, wonach du in einem Interview eine Stunde suchen würdest. Und sie findet Sachen, an die du selbst nicht gedacht hättest.</p></div>
+        
+        <a class="nachoben" href="#top">↑ nach oben</a>
+      </article>
+      <article class="bereich" id="a-was-bei-mir-dabei-herauskam-0-1">
+        <p class="bereich__zeit">14.08. · 21:14 Uhr</p>
+        <h3>Was bei mir dabei herauskam</h3>
+        <div class="fliess"><p>Gefunden wurden 30 Dateien: ein komplettes Brand OS mit 21 Dokumenten im Google Drive, mein Kernstück auf zehn Seiten, meine Farbpalette samt Signet, vier Foto-Shootings und eine Reportage von Coca-Cola über meine Bäckerei, veröffentlicht zwei Tage vorher.</p>
+<p>Nebenbei kam heraus, dass meine Website abgelaufen ist. Das wusste ich nicht.</p>
+<p>Aus diesem Material entstand ein Markenprofil, in dem hinter jeder Aussage steht, aus welcher Datei sie stammt. Nichts erfunden. Alles nachprüfbar.</p></div>
+        
+        <a class="nachoben" href="#top">↑ nach oben</a>
+      </article></div>
+      </div>
+    </section>
+    <section class="abschnitt">
+      <div class="bahn">
+        <p class="marke-zeile"><span class="stempel" aria-hidden="true"></span><span class="nr">02</span>Zum Mitnehmen</p>
+        <div class="fliess fliess--abschnitt"><p>Diesen Prompt kannst du morgen früh laufen lassen.</p></div>
+        <div class="bereiche">
+      <article class="bereich" id="a-der-fundstueck-prompt-1-0">
+        <p class="bereich__zeit">14.08. · 21:20 Uhr</p>
+        <h3>Der Fundstück-Prompt</h3>
+        <div class="fliess"><p>Starte Claude Code in einem leeren Ordner und füge das hier ein. Es liest nur, es verändert nichts. Am Ende liegt eine Übersicht vor dir, was du an Marken-Material schon besitzt und wo es liegt.</p></div>
+        <div class="anhaenge">
+      <div class="anhang anhang--prompt">
+        <div class="anhang__kopf">
+          <span class="anhang__label">Prompt · exakt so übernehmen</span>
+          <button class="kopierknopf" type="button" data-kopie="p-1-0-0">Kopieren</button>
+        </div>
+        <pre class="prompt" id="p-1-0-0">Durchsuche meinen Rechner nach Material, aus dem sich mein Markenfundament bauen lässt.
+Ich bin nicht technisch: mach alles selbst und erklär mir jeden Schritt in normalem Deutsch.
+
+SUCHE NACH:
+- Positionierungs- und Strategiepapiere, Markenhandbücher, Styleguides
+- Beschreibungen meiner Angebote, Preise, alte Verkaufstexte, Angebotsseiten
+- Kundenstimmen, Fallstudien, Referenzen, Umfrageergebnisse
+- Corporate Identity: Farben, Schriften, Logo, Signet, Fotos
+- Presseartikel oder Beiträge, in denen ich vorkomme
+- Notizen, Konzepte, Transkripte, in denen ich über mein Angebot spreche
+
+SCHAU NACH IN: Dokumente, Desktop, Downloads, Google Drive, Dropbox, iCloud.
+Auch in .docx, .pdf und Bildern. Screenshots kannst du lesen.
+
+DANN:
+1. Sag mir in einem Satz je Datei, was du gefunden hast.
+2. Ordne die Funde in vier Töpfe: Quelle · Antwortmaterial · Corporate Identity · Assets.
+3. Schreib mir eine Datei entwurf-marke.md, in der du alles einträgst, was sich daraus
+   schon beantworten lässt. Hinter jeden Punkt schreibst du, aus welcher Datei er stammt.
+4. Sag mir am Ende, was NICHT beantwortbar war. Nur das frage ich dich danach.
+
+WICHTIG: Erfinde nichts. Wenn etwas fehlt, schreib [FEHLT] hin. Verändere keine Datei,
+nur lesen. Und wenn du auf etwas Widersprüchliches stößt, zeig mir beide Fassungen.</pre>
+      </div></div>
+        <a class="nachoben" href="#top">↑ nach oben</a>
+      </article>
+      <article class="bereich" id="a-die-regel-die-den-unterschied-macht-1-1">
+        <p class="bereich__zeit">14.08. · 21:24 Uhr</p>
+        <h3>Die Regel, die den Unterschied macht</h3>
+        <div class="fliess"><p>Wenn du nur eine Sache mitnimmst, dann diese: Lass dir hinter jede Aussage schreiben, aus welcher Datei sie kommt.</p>
+<p>Mein Markenprofil hat unten eine Quellentabelle. Zwölf Zeilen, jede Angabe rückverfolgbar. Deshalb konnte ich später jede einzelne Zahl prüfen. Bei zwei Zahlen stimmte etwas nicht, und wir haben es gemerkt, bevor es auf der Seite stand.</p>
+<p>Ohne Quellenangabe ist ein KI-Markenprofil eine schöne Behauptung. Mit Quellenangabe ist es ein Werkzeug.</p></div>
+        
+        <a class="nachoben" href="#top">↑ nach oben</a>
+      </article></div>
+      </div>
+    </section>
+    <section class="abschnitt">
+      <div class="bahn">
+        <p class="marke-zeile"><span class="stempel" aria-hidden="true"></span><span class="nr">03</span>Diverses</p>
+        
+        <div class="bereiche">
+      <article class="bereich" id="a-die-bauplaene-aus-dem-workshop-2-0">
+        <p class="bereich__zeit">14.08. · 21:30 Uhr</p>
+        <h3>Die Baupläne aus dem Workshop</h3>
+        <div class="fliess"><p>Beide Teile, falls jemand sie noch braucht.</p></div>
+        <div class="anhaenge">
+    <div class="anhang">
+      <a class="verweis" href="https://go.koerting.ai/ki-im-marketing-drei-punkt-null/s/teil-01-marketing-system" target="_blank" rel="noopener">
+        <span class="verweis__label">Teil 01 · Dein Marketing-System</span>
+        <span class="verweis__ziel">go.koerting.ai</span>
+      </a>
+    </div></div>
+        <a class="nachoben" href="#top">↑ nach oben</a>
+      </article></div>
+      </div>
+    </section>
+
+<footer class="fuss">
+  <div class="bahn fuss__innen">
+    <p>© 2026 Tanja Huck · Atelier Futura</p>
+    <ul style="list-style:none;margin:0;padding:0;display:flex;gap:var(--a3);flex-wrap:wrap">
+      <li><a href="#">[BITTE ERGÄNZEN: Impressum-Link]</a></li><li><a href="#">[BITTE ERGÄNZEN: Datenschutz-Link]</a></li>
+    </ul>
+  </div>
+</footer>
+
+<script>
+  // Kopierknopf für Prompts
+  document.querySelectorAll('[data-kopie]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var q = document.getElementById(b.dataset.kopie);
+      navigator.clipboard.writeText(q.textContent).then(function () {
+        var alt = b.textContent; b.textContent = 'kopiert';
+        setTimeout(function () { b.textContent = alt; }, 1600);
+      });
+    });
+  });
+  // Video lädt erst beim Klick. Vorher geht keine Verbindung nach außen.
+  document.querySelectorAll('[data-video]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var r = document.createElement('div');
+      r.className = 'video-rahmen';
+      var f = document.createElement('iframe');
+      f.src = b.dataset.video;
+      f.allow = 'accelerometer; autoplay; encrypted-media; picture-in-picture';
+      f.setAttribute('allowfullscreen', '');
+      f.title = b.querySelector('.video__label').textContent;
+      r.appendChild(f);
+      b.replaceWith(r);
+    });
+  });
+</script>
+</body>
+</html>
